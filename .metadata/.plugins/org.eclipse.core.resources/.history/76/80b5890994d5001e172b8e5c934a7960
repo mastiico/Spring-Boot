@@ -1,0 +1,5 @@
+package br.com.marcio;
+
+public class Greeting {
+
+}
