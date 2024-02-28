@@ -9,7 +9,7 @@ Este repositório contém o código e os recursos utilizados no desenvolvimento 
 - [x] Seção 4: Configuração do Ambiente de Desenvolvimento no Linux
 - [x] Seção 5: Primeiros Passos em Spring Boot 3 com Java 18
 - [x] Seção 6: Entendendo Path Params e o Tratamento de Exceptions no Spring Boot 3
-- [ ] Seção 7: Como usar os Verbos HTTP GET, POST, PUT e DELETE no Spring Boot
+- [x] Seção 7: Como usar os Verbos HTTP GET, POST, PUT e DELETE no Spring Boot
 - [ ] Seção 8: Integrando a nossa API ao Banco de Dados MySQL
 - [ ] Seção 9: O Padrão de Projetos VO (Value Object)
 - [ ] Seção 10: Versionamento de API's
