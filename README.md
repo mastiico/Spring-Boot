@@ -12,7 +12,7 @@ Este repositório contém o código e os recursos utilizados no desenvolvimento 
 - [x] Seção 7: Como usar os Verbos HTTP GET, POST, PUT e DELETE no Spring Boot
 - [x] Seção 8: Integrando a nossa API ao Banco de Dados MySQL
 - [x] Seção 9: O Padrão de Projetos VO (Value Object)
-- [ ] Seção 10: Versionamento de API's
+- [x] Seção 10: Versionamento de API's
 - [ ] Seção 11: Adicionando Suporte à Migrations com Flyway
 - [ ] Seção 12: Custom JSON Serialization
 - [ ] Seção 13: Content Negotiation
