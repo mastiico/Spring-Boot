@@ -7,11 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.marcio.data.vo.v1.PersonVO;
+import br.com.marcio.data.vo.v2.PersonVOV2;
 import br.com.marcio.exceptions.ResourceNotFoundException;
 import br.com.marcio.mapper.DozerMapper;
+import br.com.marcio.mapper.custom.PersonMapper;
 import br.com.marcio.models.Person;
 import br.com.marcio.repositories.PersonRepository;
 
+@SuppressWarnings("null")
 @Service
 public class PersonServices {
 
@@ -20,24 +23,25 @@ public class PersonServices {
     @Autowired
     PersonRepository repository;
 
+    @Autowired
+    PersonMapper mapper;
+
     public List<PersonVO> findAll(){
-        logger.info("Finding all personVO!");
+        logger.info("Finding all person!");
 
         return DozerMapper.parseListObject(repository.findAll(), PersonVO.class);
     }
     
     public PersonVO findById(Long id) {
-        logger.info("Finding one personVO!");
+        logger.info("Finding one person!");
     
-        @SuppressWarnings("null")
         var entity = repository.findById(id).orElse(null);
         return DozerMapper.parseObject(entity, PersonVO.class);
     }
     
     public PersonVO update(PersonVO personVO) {
-        logger.info("Updating one personVO!");
+        logger.info("Updating one person!");
     
-        @SuppressWarnings("null")
         var entity = repository.findById(personVO.getId()).orElse(null);
     
         if (entity != null) {
@@ -53,18 +57,16 @@ public class PersonServices {
         }
     }
 
-    @SuppressWarnings("null")
     public PersonVO create(PersonVO person){
-        logger.info("Creating one personVO!");
+        logger.info("Creating one person!");
         var entity = DozerMapper.parseObject(person, Person.class);
         var vo = DozerMapper.parseObject(repository.save(entity), PersonVO.class);
         return vo;
     }
 
     public void delete(Long id) {
-        logger.info("Deleting one personVO!");
+        logger.info("Deleting one person!");
     
-        @SuppressWarnings("null")
         var entity = repository.findById(id).orElse(null);
     
         if (entity != null) {
@@ -72,6 +74,13 @@ public class PersonServices {
         } else {
             throw new ResourceNotFoundException("No records found for this ID!");
         }
+    }
+
+    public PersonVOV2 createV2(PersonVOV2 person) {
+        logger.info("Creating one person with v2!");
+        var entity = mapper.convertVoToEntity(person);
+        var vo = mapper.convertEntityToVO(repository.save(entity));
+        return vo;
     }
     
 /** 
