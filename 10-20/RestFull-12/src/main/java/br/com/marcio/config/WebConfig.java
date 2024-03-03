@@ -8,7 +8,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
     
-    @Override
+    /** Content negotiation via queryParament
     @SuppressWarnings("null") 
     public void configureContentNegotiation(ContentNegotiationConfigurer configurer){
         
@@ -20,4 +20,17 @@ public class WebConfig implements WebMvcConfigurer {
         .mediaType("json", MediaType.APPLICATION_JSON)
         .mediaType("xml", MediaType.APPLICATION_XML);
     }
+    */
+    @SuppressWarnings("null")
+    @Override
+    public void configureContentNegotiation(ContentNegotiationConfigurer configurer){
+
+        configurer.favorParameter(false)
+                .ignoreAcceptHeader(false)
+                .useRegisteredExtensionsOnly(false)
+                .defaultContentType(MediaType.APPLICATION_JSON)
+                .mediaType("json", MediaType.APPLICATION_JSON)
+                .mediaType("xml", MediaType.APPLICATION_XML);
+    }
+
 }
