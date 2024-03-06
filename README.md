@@ -16,7 +16,7 @@ Este repositório contém o código e os recursos utilizados no desenvolvimento 
 - [x] Seção 11: Adicionando Suporte à Migrations com Flyway
 - [x] Seção 12: Custom JSON Serialization
 - [x] Seção 13: Content Negotiation
-- [ ] Seção 14: Implementando HATEOAS (Hypermedia as the Engine of Application State)
+- [x] Seção 14: Implementando HATEOAS (Hypermedia as the Engine of Application State)
 - [ ] Seção 15: Adicionando o Suporte ao Swagger (Open API)
 - [ ] Seção 16: Configurando Cross-Origin Resource Sharing (CORS)
 - [ ] Seção 17: Autenticação com JWT e Spring Security
