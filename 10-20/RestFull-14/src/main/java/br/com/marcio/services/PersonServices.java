@@ -44,11 +44,17 @@ public class PersonServices {
     @SuppressWarnings("null")
     public PersonVO findById(Long id) throws Exception {
         logger.info("Finding one personVO!");
-    
+        
+        
         var entity = repository.findById(id).orElse(null);
+        if(entity != null){
         var vo = DozerMapper.parseObject(entity, PersonVO.class);
         vo.add(linkTo(methodOn(PersonController.class).findById(id)).withSelfRel());
         return vo;
+
+        }else {
+            throw new ResourceNotFoundException("No records found for this ID!");
+        }
     }
     
     @SuppressWarnings("null")
