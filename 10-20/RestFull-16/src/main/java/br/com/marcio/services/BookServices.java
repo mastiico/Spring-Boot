@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.marcio.controllers.BookController;
-import br.com.marcio.controllers.PersonController;
 import br.com.marcio.data.vo.v1.BookVO;
 import br.com.marcio.exceptions.RequiredObjectsNullException;
 import br.com.marcio.exceptions.ResourceNotFoundException;
@@ -30,14 +29,16 @@ public class BookServices {
         logger.info("Finding all books!");
     
         var books = DozerMapper.parseListBook(repository.findAll(), BookVO.class);
-        books.forEach(p -> {
-            try {
-                p.add(linkTo(methodOn(BookController.class).findById(p.getKey())).withSelfRel());
-            } catch (Exception e) {
-                logger.info("Error while adding self link to BookVO: {}");
-                e.printStackTrace();
-            }
-        });
+        books
+            .stream()
+            .forEach(p -> {
+                try {
+                    p.add(linkTo(methodOn(BookController.class).findById(p.getKey())).withSelfRel());
+                } catch (Exception e) {
+                    logger.info("Error while adding self link to BookVO: {}");
+                    e.printStackTrace();
+                }
+            });
         return books;
     }
     
@@ -70,7 +71,7 @@ public class BookServices {
             entity.setTitle(book.getTitle());
     
             var vo = DozerMapper.parseObject(entity, BookVO.class);
-            vo.add(linkTo(methodOn(PersonController.class).findById(vo.getKey())).withSelfRel());
+            vo.add(linkTo(methodOn(BookController.class).findById(vo.getKey())).withSelfRel());
             return vo;            
         } else {
             throw new ResourceNotFoundException("No records found for this ID!");

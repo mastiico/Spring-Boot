@@ -68,4 +68,6 @@ public class DozerConverterTest {
         assertEquals("Addres Test0", output.getAddress());
         assertEquals("Male", output.getGender());
     }
+
+    
 }
