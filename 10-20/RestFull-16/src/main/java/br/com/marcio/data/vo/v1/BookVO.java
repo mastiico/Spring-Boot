@@ -1,7 +1,6 @@
 package br.com.marcio.data.vo.v1;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Date;
 
 import org.springframework.hateoas.RepresentationModel;
@@ -18,8 +17,9 @@ public class BookVO extends RepresentationModel<BookVO> implements Serializable 
     private Long key;
     private String author;
     private Date launchDate;
-    private BigDecimal price;
+    private Double price;
     private String title;
+    public Object getPrice;
 
     public BookVO(){}
 
@@ -102,11 +102,11 @@ public class BookVO extends RepresentationModel<BookVO> implements Serializable 
         this.launchDate = launchDate;
     }
 
-    public BigDecimal getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 

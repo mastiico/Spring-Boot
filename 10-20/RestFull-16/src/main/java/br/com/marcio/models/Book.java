@@ -1,6 +1,5 @@
 package br.com.marcio.models;
 
-import java.math.BigDecimal;
 import java.util.Date;
 
 import jakarta.persistence.Column;
@@ -28,7 +27,7 @@ public class Book {
     private Date launchDate;
 
     @Column(name = "price", nullable = false, precision = 65, scale = 2)
-    private BigDecimal price;
+    private Double price;
 
     @Column(name = "title", nullable = false)
     private String title;
@@ -109,11 +108,11 @@ public class Book {
         this.launchDate = launchDate;
     }
 
-    public BigDecimal getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
