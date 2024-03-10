@@ -26,7 +26,7 @@ public class Book {
     @Temporal(TemporalType.TIMESTAMP)
     private Date launchDate;
 
-    @Column(name = "price", nullable = false, precision = 65, scale = 2)
+    @Column(name = "price", nullable = false, precision = 65)
     private Double price;
 
     @Column(name = "title", nullable = false)

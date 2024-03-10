@@ -14,6 +14,7 @@ import br.com.marcio.data.vo.v1.BookVO;
 import br.com.marcio.exceptions.RequiredObjectsNullException;
 import br.com.marcio.exceptions.ResourceNotFoundException;
 import br.com.marcio.mapper.DozerMapper;
+import br.com.marcio.models.Book;
 import br.com.marcio.repositories.BookRepository;
 
 @Service
@@ -58,9 +59,11 @@ public class BookServices {
     }
 
     @SuppressWarnings("null")
-    public BookVO update(BookVO book) throws Exception{
+    public BookVO update(BookVO book) throws Exception {
         logger.info("Update one Book!");
-        if(book == null) throw new RequiredObjectsNullException();
+        if (book == null) {
+            throw new RequiredObjectsNullException();
+        }
     
         var entity = repository.findById(book.getKey()).orElse(null);
     
@@ -70,27 +73,45 @@ public class BookServices {
             entity.setPrice(book.getPrice());
             entity.setTitle(book.getTitle());
     
-            var vo = DozerMapper.parseObject(entity, BookVO.class);
+            var updatedEntity = repository.save(entity);
+    
+            var vo = DozerMapper.parseObject(updatedEntity, BookVO.class);
             vo.add(linkTo(methodOn(BookController.class).findById(vo.getKey())).withSelfRel());
-            return vo;            
+            return vo;
         } else {
             throw new ResourceNotFoundException("No records found for this ID!");
         }
     }
+    
 
     @SuppressWarnings("null")
-    public BookVO create(BookVO book) throws Exception{
-        logger.info("Create one Book!");
-        if(book == null) throw new RequiredObjectsNullException();
-        var entity = repository.findById(book.getKey()).orElse(null);
-        var vo = DozerMapper.parseObject(entity, BookVO.class);
+    public BookVO create(BookVO book) throws Exception {
+        if (book == null) {
+            throw new RequiredObjectsNullException();
+        }
+        logger.info("Creating one Book!");
+        var entity = DozerMapper.parseObject(book, Book.class);
+        
+        var savedEntity = repository.save(entity);
+        var vo = DozerMapper.parseObject(savedEntity, BookVO.class);
+        
         vo.add(linkTo(methodOn(BookController.class).findById(vo.getKey())).withSelfRel());
+        
         return vo;
     }
 
+
+
     public BookVO delete(Long id){
         logger.info("Delete one Book!");
-        
+        @SuppressWarnings("null")
+        var entity = repository.findById(id).orElse(null);
+    
+        if (entity != null) {
+            repository.delete(entity);
+        } else {
+            throw new ResourceNotFoundException("No records found for this ID!");
+        }
         return null;
     }
 }
