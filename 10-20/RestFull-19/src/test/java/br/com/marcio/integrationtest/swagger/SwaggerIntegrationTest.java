@@ -6,12 +6,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import br.com.marcio.configs.TestConfigs;
 import br.com.marcio.integrationtest.testcontainer.AbstractIntegrationTest;
 
-
+@SpringBootApplication
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 class SwaggerIntegrationTest extends AbstractIntegrationTest {
 

@@ -1,4 +1,4 @@
-package br.com.marcio.integrationtests.vo;
+package br.com.marcio.integrationtest.vo;
 
 import java.io.Serializable;
 

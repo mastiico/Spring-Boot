@@ -6,6 +6,7 @@ import java.util.List;
 import com.github.dozermapper.core.DozerBeanMapperBuilder;
 import com.github.dozermapper.core.Mapper;
 
+import br.com.marcio.data.vo.v1.PersonVO;
 import br.com.marcio.models.Book;
 import br.com.marcio.models.Person;
 
@@ -17,7 +18,8 @@ public class DozerMapper {
         return mapper.map(origin, destination);
     }
 
-    public static <O, D> List<D> parseListObject(List<Person> list, Class<D> class1){
+    @SuppressWarnings("unchecked")
+    public static <O, D> List<D> parseListObject(List<Person> list, Class<PersonVO> class1){
         List<D> destinantionObjects = new ArrayList<>();
         for (Person o : list) {
             destinantionObjects.add((D) mapper.map(o, class1));

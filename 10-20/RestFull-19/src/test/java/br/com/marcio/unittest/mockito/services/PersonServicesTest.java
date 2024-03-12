@@ -22,6 +22,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import br.com.marcio.data.vo.v1.PersonVO;
 import br.com.marcio.exceptions.RequiredObjectsNullException;
+import br.com.marcio.models.Book;
 import br.com.marcio.models.Person;
 import br.com.marcio.repositories.PersonRepository;
 import br.com.marcio.services.PersonServices;
@@ -135,12 +136,16 @@ class PersonServicesTest {
     }
 
 
-    @Test
-    void testDelete() throws Exception{
-        Person entity = input.mockEntity(1);
-        entity.setId(1L);
-        service.delete(1L);
-    }
+
+	@Test
+	void testDelete() {
+		Person entity = input.mockEntity(1); 
+		entity.setId(1L);
+		
+		when(repository.findById(1L)).thenReturn(Optional.of(entity));
+		
+		service.delete(1L);
+	}
 
     @Test
     void testFindAll() throws Exception{

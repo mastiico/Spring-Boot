@@ -5,6 +5,7 @@ import java.util.stream.Stream;
 
 import org.springframework.context.ApplicationContextInitializer;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.core.env.MapPropertySource;
 import org.springframework.test.context.ContextConfiguration;
@@ -12,6 +13,7 @@ import org.testcontainers.containers.MySQLContainer;
 import org.testcontainers.lifecycle.Startables;
 
 @ContextConfiguration(initializers = AbstractIntegrationTest.Initializer.class)
+@Configuration
 public class AbstractIntegrationTest {
 
     static class Initializer implements ApplicationContextInitializer<ConfigurableApplicationContext> {
@@ -22,7 +24,7 @@ public class AbstractIntegrationTest {
             Startables.deepStart(Stream.of(mysql)).join();
         }
         
-        private static Map<String, String> createConnectionConfiguration(){
+        private static Map<String, Object> createConnectionConfiguration(){
             return Map.of(
                 "spring.datasource.url", mysql.getJdbcUrl(),
                 "spring.datasource.username", mysql.getUsername(),
@@ -30,14 +32,14 @@ public class AbstractIntegrationTest {
         }
         
         @Override
-        @SuppressWarnings({ "rawtypes", "unchecked", "null" })
+        @SuppressWarnings({ "null" })
         public void initialize( ConfigurableApplicationContext applicationContext) {
             startContainers();
             ConfigurableEnvironment environment = applicationContext.getEnvironment();
             MapPropertySource testcontainers =
                 new MapPropertySource(
                     "testcontainers",
-                    (Map) createConnectionConfiguration());
+                    createConnectionConfiguration());
             
             environment.getPropertySources().addFirst(testcontainers);
         }

@@ -34,31 +34,32 @@ public class WebConfig implements WebMvcConfigurer {
                 .allowCredentials(true);
 
     }
-
-    /** Content negotiation via queryParament
-    @SuppressWarnings("null") 
+    
+    @SuppressWarnings("null")
+    @Override
     public void configureContentNegotiation(ContentNegotiationConfigurer configurer){
         
-        configurer.favorParameter(true)
-        .parameterName("mediaType")
+        configurer.favorParameter(false)
         .ignoreAcceptHeader(false)
         .useRegisteredExtensionsOnly(false)
         .defaultContentType(MediaType.APPLICATION_JSON)
         .mediaType("json", MediaType.APPLICATION_JSON)
-        .mediaType("xml", MediaType.APPLICATION_XML);
+        .mediaType("xml", MediaType.APPLICATION_XML)
+        .mediaType("yaml", MEDIA_TYPE_APPLICATION_YML);
     }
-    */
-    @SuppressWarnings("null")
-    @Override
-    public void configureContentNegotiation(ContentNegotiationConfigurer configurer){
-
-        configurer.favorParameter(false)
-                .ignoreAcceptHeader(false)
-                .useRegisteredExtensionsOnly(false)
-                .defaultContentType(MediaType.APPLICATION_JSON)
-                .mediaType("json", MediaType.APPLICATION_JSON)
-                .mediaType("xml", MediaType.APPLICATION_XML)
-                .mediaType("yaml", MEDIA_TYPE_APPLICATION_YML);
-    }
-
+    
+    
+        /** Content negotiation via queryParament
+        @SuppressWarnings("null") 
+        public void configureContentNegotiation(ContentNegotiationConfigurer configurer){
+            
+            configurer.favorParameter(true)
+            .parameterName("mediaType")
+            .ignoreAcceptHeader(false)
+            .useRegisteredExtensionsOnly(false)
+            .defaultContentType(MediaType.APPLICATION_JSON)
+            .mediaType("json", MediaType.APPLICATION_JSON)
+            .mediaType("xml", MediaType.APPLICATION_XML);
+        }
+        */
 }
