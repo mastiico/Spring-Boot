@@ -18,7 +18,7 @@ Este repositório contém o código e os recursos utilizados no desenvolvimento 
 - [x] Seção 13: Content Negotiation
 - [x] Seção 14: Implementando HATEOAS (Hypermedia as the Engine of Application State)
 - [x] Seção 15: Adicionando o Suporte ao Swagger (Open API)
-- [ ] Seção 16: Configurando Cross-Origin Resource Sharing (CORS)
+- [x] Seção 16: Configurando Cross-Origin Resource Sharing (CORS)
 - [ ] Seção 17: Autenticação com JWT e Spring Security
 - [ ] Seção 18: Blindando nossa API com Rest Assured, Testcontainers e JUnit 5
 - [ ] Seção 19: O Verbo PATCH
