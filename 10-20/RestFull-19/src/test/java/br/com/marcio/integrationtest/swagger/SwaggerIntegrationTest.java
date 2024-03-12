@@ -13,7 +13,7 @@ import br.com.marcio.configs.TestConfigs;
 import br.com.marcio.integrationtest.testcontainer.AbstractIntegrationTest;
 
 @SpringBootApplication
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT, properties = {"server.port:8888"})
 class SwaggerIntegrationTest extends AbstractIntegrationTest {
 
     @Test
