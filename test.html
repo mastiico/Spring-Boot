@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Management System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Book Management System</h1>
+  </header>
+  <nav>
+    <a href="#" id="list-books">List All Books</a>
+    <a href="#" id="add-book">Add New Book</a>
+    <a href="#" id="view-book">View Book</a> <!-- Corrigindo o texto do botão -->
+  </nav>
+
+  <section id="book-corrections" style="display: none;">
+    <h2>Book Corrections</h2>
+    <div class="select-book">
+      <label for="book-select">Select a Book:</label>
+      <select id="book-select"></select>
+      <button id="edit-book">Edit</button>
+      <button id="delete-book">Delete</button>
+    </div>
+  </section>
+
+  <div class="container" id="content">
+    <!-- Conteúdo será carregado aqui -->
+  </div>
+
+  <!-- Templates para as páginas -->
+  <template id="list-template">
+    <h2>All Books</h2>
+    <div id="book-cards" class="book-cards-container"></div> <!-- Corrigindo o ID do template e substituindo a lista por div -->
+  </template>
+
+  <template id="list-template">
+    <h2>All Books</h2>
+    <div id="book-cards" class="book-cards-container"></div>
+</template>
+
+
+  <template id="add-book-template">
+    <h2>Add New Book</h2>
+    <form id="add-book-form">
+      <input type="text" id="title" placeholder="Title" required><br>
+      <input type="text" id="author" placeholder="Author" required><br>
+      <input type="date" id="launchDate" required><br>
+      <input type="number" id="price" placeholder="Price" required><br>
+      <button type="submit">Add Book</button>
+    </form>
+  </template>
+  <script src="script.js"></script>
+</body>
+</html>

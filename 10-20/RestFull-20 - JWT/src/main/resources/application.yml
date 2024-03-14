@@ -1,10 +1,11 @@
 cors:
-  originPatterns: http://localhost:8080,http://localhost:3000,http://marcio.com.br,http://127.0.0.1:5500
+  originPatterns: http://localhost:8080,http://localhost:3000,http://marcio.com.br
 spring:
-  main:
-    web-application-type: none
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/restapi?useTimezone=true&serverTimezone=UTC
+    username: root
+    password: 860808
   jpa:
     open-in-view: false
     hibernate:
@@ -17,6 +18,3 @@ springdoc:
   pathsToMatch: /**/v1/**
   swagger-ui:
     use-root-path: true
-flyway:
-  enabled: true
-
